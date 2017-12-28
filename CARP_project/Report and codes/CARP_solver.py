@@ -642,17 +642,17 @@ if __name__ == "__main__":
     pop = population_init()
     sorted_pop_key = sorted(pop[2], key=pop[2].get)
     best_index = sorted_pop_key[0]
-    result = "s 0"
+    result = ""
     routes = []
     for i in pop[1][best_index].keys():
-        routes += pop[1][best_index][i]+[0]
+        routes += [0]+pop[1][best_index][i]+[0]
     for item in routes:
-        result += "," + str(item)
+        result += str(item) + ", "
     while (time.time() - start) > termination-1:
-        print result
+        print "s", result[:-2]
         print "q " + str(pop[2][best_index])
         print (time.time() - start)
         quit()
-    print result
+    print "s", result[:-2]
     print "q " + str(pop[2][best_index])
 

@@ -6,4 +6,7 @@ All project includes problem details and requirements.
 - Project 1: Go
 - Project 2: CARP(Unfinished)
 - Project 3: IMP
-- Project 4: Mnist(Update later days)
+- Project 4: MNIST
+
+# Author
+Yilin Zheng
