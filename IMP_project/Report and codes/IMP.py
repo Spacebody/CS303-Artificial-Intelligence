@@ -11,7 +11,7 @@ from threading import Timer
 import numpy as np
 
 __author__ = "Yilin Zheng"
-__version__ = "6.5.8"
+__version__ = "6.6.0"
 
 
 # parameter
@@ -105,6 +105,7 @@ def command_line():
 
 
 def main():
+    start = time.clock()
     args = command_line()
     seed_size = args.seed_size
     seeds = []
@@ -114,28 +115,31 @@ def main():
         count = 0.
         iterations = 0
         if args.model == "IC":
-            start = time.clock()
-            while time.clock() - start < args.time_budget - 1.5:
+            while time.clock() - start < args.time_budget - 2:
                 seeds = CELF2(network, nodes, seed_size, Dv, args.model)
                 count += IC(network, seeds)
                 iterations += 1
         elif args.model == "LT":
             start = time.clock()
-            while time.clock() - start < args.time_budget - 1.5:
+            while time.clock() - start < args.time_budget - 2:
                 seeds = CELF2(network, nodes, seed_size, Dv, args.model)
                 count += LT(network, seeds)
                 iterations += 1
-        print("Algorithm applied: CEFL")
-        print("model: {}".format(args.model))
-        print("seeds: {}".format(seeds))
-        print("result: {}".format(count / iterations))
+        # print("Algorithm applied: CEFL")
+        # print("model: {}".format(args.model))
+        # print("seeds: {}".format(seeds))
+        # print("result: {}".format(count / iterations))
+        for s in seeds:
+            print(s)
     else:
         seeds = CELF2(network, nodes, seed_size, Dv, args.model)
         result = default_evaluation(network, seeds, args.model)
-        print("Algorithm applied: CEFL")
-        print("model: {}".format(args.model))
-        print("seeds: {}".format(seeds))
-        print("result: {}".format(result))
+        # print("Algorithm applied: CEFL")
+        # print("model: {}".format(args.model))
+        # print("seeds: {}".format(seeds))
+        # print("result: {}".format(result))
+        for s in seeds:
+            print(s)
 
     # Other algorithms, uncommented the following codes for trial
     # print("MaxDegree:")
